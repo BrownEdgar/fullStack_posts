@@ -9,9 +9,9 @@ const mongoose = require('mongoose')
 const models = require('./models')
 const url = 'mongodb://127.0.0.1:27017/test';
 
-   mongoose.connect(url)
-   .then(()=>console.log('Connected!'))
-   .catch(err=>console.log(err))
+  mongoose.connect(url)
+  .then(()=>console.log('Connected!'))
+  .catch(err=>console.log(err))
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,13 +20,11 @@ const PostsService = require('./services/PostsService');
 var app = express();
 
 app.locals.models = {
-  posts: models.posts
+  posts: models.posts,
 }
 app.locals.services = {
   posts: new PostsService(app.locals.models)
 }
-
-
 
 app.use(cors());
 app.use(logger('dev'));
