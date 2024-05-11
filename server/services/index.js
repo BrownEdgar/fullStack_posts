@@ -1,4 +1,6 @@
 module.exports = {
   posts: require('./PostsService'),
-  usersAuth: require('./UsersAuthService')
-}
+  postsAuth: require('./PostsAuthService'),
+  users: require("./UsersServices"),
+  usersAuth: require('./UsersAuthService'),
+};
