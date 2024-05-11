@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const multer = require('multer');
 
-const UsersController = require ('../controllers/UsersController');
+const router = express.Router();
+
+const UsersController = require('../controllers/UsersController');
+const storage = require('../constants/multerStorage');
 const controller = new UsersController()
 
-router.get('/', controller.getAllUsers);
+const upload = multer({ storage: storage })
 
+router.get('/', controller.getAllUsers);
+router.post('/', upload.single('avatar'), controller.addUser)
 module.exports = router;

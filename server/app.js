@@ -7,6 +7,10 @@ const logger = require('morgan');
 
 const mongoose = require('mongoose')
 const models = require('./models')
+const services = require('./services')
+
+
+
 const url = 'mongodb://127.0.0.1:27017/test';
 
 mongoose.connect(url)
@@ -15,16 +19,16 @@ mongoose.connect(url)
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const usersAuthRouter = require('./routes/usersAuth');
-const PostsService = require('./services/PostsService');
-
+const postRouter = require('./routes/posts');
 const app = express();
 
 app.locals.models = {
   posts: models.posts,
+  users: models.users,
 }
 app.locals.services = {
-  posts: new PostsService(app.locals.models)
+  posts: new services.posts(app.locals.models),
+  users: new services.users(app.locals.models)
 }
 
 app.use(cors());
@@ -33,10 +37,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/users/auth', usersAuthRouter);
+app.use('/posts', postRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -51,7 +57,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ err });
 });
 
 module.exports = app;
