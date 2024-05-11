@@ -1,24 +1,24 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cors = require('cors');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 const mongoose = require('mongoose')
 const models = require('./models')
 const url = 'mongodb://127.0.0.1:27017/test';
 
-  mongoose.connect(url)
-  .then(()=>console.log('Connected!'))
-  .catch(err=>console.log(err))
+mongoose.connect(url)
+  .then(() => console.log('Connected!'))
+  .catch(err => console.log(err))
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var usersAuthRouter = require('./routes/usersAuth');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const usersAuthRouter = require('./routes/usersAuth');
 const PostsService = require('./services/PostsService');
 
-var app = express();
+const app = express();
 
 app.locals.models = {
   posts: models.posts,
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/users/', usersAuthRouter);
+app.use('/users/auth', usersAuthRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
