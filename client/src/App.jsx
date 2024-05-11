@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import './App.scss'
+import Products from './components/Products/Products';
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -13,12 +14,8 @@ export default function App() {
 
   return (
     <div className='App'>
-      <h1>Our Users</h1>
-      {
-        users.map(elem => {
-          return <h1 key={elem}>{elem}</h1>
-        })
-      }
+      <Products />
+
     </div>
   )
 }
