@@ -1,0 +1,49 @@
+.Product {
+  position: relative;
+  width: 280px;
+  cursor: pointer;
+  height: 400px;
+  margin: 15px;
+  box-shadow: 0 2px 20px rgba($color: #000, $alpha: 0.5);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+  background: #414852;
+  background-repeat: 15px;
+  transition: all 0.8s ease-in-out;
+  &:hover {
+    transform: translateY(-10px);
+  }
+  &__image {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #eee;
+    margin-top: 12px;
+    padding: 16px;
+    text-align: center;
+    h3 {
+      font-size: 30px;
+      font-variant: small-caps;
+      color: rgba(0, 174, 255);
+    }
+  }
+  &:hover {
+    .Product__overlay {
+      opacity: 1;
+    }
+  }
+}
