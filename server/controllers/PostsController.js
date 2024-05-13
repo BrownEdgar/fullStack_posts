@@ -17,6 +17,36 @@ class PostsController {
       res.status(500).json({ error: error.message });
     }
   }
+  async getPostById(req, res) {
+    const { id } = req.params;
+    try {
+      const post = await req.app.locals.services.posts.getPostById(id);
+      if (!post) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  async deletePostById(req, res) {
+    const { id } = req.params;
+    try {
+      const post = await req.app.locals.services.posts.deletePostById(id);
+      if (!post) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+      res.json('post deleted');
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+
+
+
+
 }
 
 module.exports = PostsController;
