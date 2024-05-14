@@ -14,9 +14,9 @@ class UsersService {
       ...body,
       image: file?.filename
     });
-    await user.save()
-    return user
+    await user.save();
+    return user;
   }
-}
+};
 
 module.exports = UsersService;

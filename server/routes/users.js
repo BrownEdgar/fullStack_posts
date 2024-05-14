@@ -7,8 +7,9 @@ const UsersController = require('../controllers/UsersController');
 const storage = require('../constants/multerStorage');
 const controller = new UsersController()
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
 
 router.get('/', controller.getAllUsers);
-router.post('/', upload.single('avatar'), controller.addUser)
+router.post('/', upload.single('avatar'), controller.addUser);
+
 module.exports = router;

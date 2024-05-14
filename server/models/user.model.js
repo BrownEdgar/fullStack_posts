@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-
 const userSchema = new Schema({
   name: {
     type: String,
@@ -17,7 +16,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: [true, "this email is alredy exist!"]
+    unique: [true, "this email is already exist!"]
   },
   age: {
     type: Number,
@@ -35,7 +34,7 @@ const userSchema = new Schema({
         return true
       }
     },
-    message: "invalid password"
+    message: "invalid password",
   },
   createdAt: {
     type: Date,
