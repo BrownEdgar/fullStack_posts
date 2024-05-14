@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-
 const userSchema = new Schema({
   name: {
     type: String,
@@ -17,13 +16,13 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: [true, "this email is alredy exist!"]
+    unique: [true, "this email is already exist!"],
   },
   age: {
     type: Number,
     required: true,
     min: 18,
-    max: 99
+    max: 99,
   },
   password: {
     type: String,
@@ -32,15 +31,15 @@ const userSchema = new Schema({
       const startWithUppercase = /^[A-Z]/.test(value);
       const hasNumber = /\d/.test(value);
       if (startWithUppercase && hasNumber && value.length > 6) {
-        return true
-      }
+        return true;
+      };
     },
-    message: "invalid password"
+    message: "invalid password",
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-module.exports = model('user', userSchema)
+module.exports = model('user', userSchema);

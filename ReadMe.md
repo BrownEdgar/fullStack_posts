@@ -1,5 +1,3 @@
-# tasks
+# endpoints
 
-## endpoints
-
-DELETE['/posts/:id'] => deleting post by id
+DELETE['/posts/:id'] => deleting post by id;

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import './Products.scss'
-import Product from '../Product/Product'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Products.scss';
+import Product from '../Product/Product';
 
 export default function Products() {
   const [posts, setPosts] = useState([]);
@@ -17,5 +17,5 @@ export default function Products() {
         return <Product key={post.id} post={post} />
       })}
     </div>
-  )
-}
+  );
+};
