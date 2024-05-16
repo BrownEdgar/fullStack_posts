@@ -5,15 +5,15 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const mongoose = require('mongoose')
-const models = require('./models')
-const services = require('./services')
+const mongoose = require('mongoose');
+const models = require('./models');
+const services = require('./services');
 
-const url = 'mongodb://127.0.0.1:27017/test';
+const url = 'mongodb://localhost:27017';
 
 mongoose.connect(url)
   .then(() => console.log('Connected!'))
-  .catch(err => console.log(err))
+  .catch(err => console.log(err));
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -23,11 +23,12 @@ const app = express();
 app.locals.models = {
   posts: models.posts,
   users: models.users,
-}
+};
+
 app.locals.services = {
   posts: new services.posts(app.locals.models),
-  users: new services.users(app.locals.models)
-}
+  users: new services.users(app.locals.models),
+};
 
 app.use(cors());
 app.use(logger('dev'));
@@ -48,7 +49,6 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   res.status(err.status || 500);
   res.json({ err });
 });

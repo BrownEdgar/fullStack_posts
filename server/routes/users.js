@@ -5,7 +5,7 @@ const router = express.Router();
 
 const UsersController = require('../controllers/UsersController');
 const storage = require('../constants/multerStorage');
-const controller = new UsersController()
+const controller = new UsersController();
 
 const upload = multer({ storage: storage });
 
